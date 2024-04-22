@@ -2,7 +2,7 @@
   "RootLayout": {
     "home_link": "Home",
     "about_link": "About",
-    "guestbook_link": "Guestbook",
+    "company_overview_link": "Company Overview",
     "portfolio_link": "Portfolio",
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
@@ -15,15 +15,14 @@
     "meta_title": "Next.js Boilerplate Presentation",
     "meta_description": "Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
   },
-  "Guestbook": {
-    "meta_title": "Guestbook",
+  "CompanyOverview": {
+    "meta_title": "Company Overview",
     "meta_description": "An example of CRUD operation",
     "database_powered_by": "Database powered by",
-    "loading_guestbook": "Loading guestbook..."
+    "loading_companies": "Loading companies..."
   },
-  "GuestbookForm": {
-    "username": "Username",
-    "body": "Body",
+  "CompanyForm": {
+    "name": "Company Name",
     "save": "Save"
   },
   "About": {

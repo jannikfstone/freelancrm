@@ -1,10 +1,9 @@
 import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export const guestbookSchema = sqliteTable('guestbook', {
+export const companiesSchema = sqliteTable('companies', {
   id: integer('id').primaryKey(),
-  username: text('username').notNull(),
-  body: text('body').notNull(),
+  name: text('name').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(
     sql`(strftime('%s', 'now'))`,
   ),

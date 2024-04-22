@@ -29,10 +29,10 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/guestbook/"
+              href="/company-overview/"
               className="border-none text-gray-700 hover:text-gray-900"
             >
-              {t('guestbook_link')}
+              {t('company_overview_link')}
             </Link>
           </li>
           <li>

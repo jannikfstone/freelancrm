@@ -2,13 +2,9 @@
 
 import { useState } from 'react';
 
-import { GuestbookForm } from './GuestbookForm';
+import { CompaniesForm } from './CompanyForm';
 
-const EditableGuestbookEntry = (props: {
-  id: number;
-  username: string;
-  body: string;
-}) => {
+const EditableCompaniesEntry = (props: { id: number; name: string }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -42,19 +38,17 @@ const EditableGuestbookEntry = (props: {
 
       <div className="ml-1 grow">
         {isEditing ? (
-          <GuestbookForm
+          <CompaniesForm
             edit
             id={props.id}
             defaultValues={{
-              username: props.username,
-              body: props.body,
+              name: props.name,
             }}
             handleStopEditing={handleStopEditing}
           />
         ) : (
           <>
-            <span className="text-gray-500">{props.username}:</span>{' '}
-            <span className="text-gray-800">{props.body}</span>
+            <span className="text-gray-500">{props.name}:</span>{' '}
           </>
         )}
       </div>
@@ -62,4 +56,4 @@ const EditableGuestbookEntry = (props: {
   );
 };
 
-export { EditableGuestbookEntry };
+export { EditableCompaniesEntry };

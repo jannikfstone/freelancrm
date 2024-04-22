@@ -6,33 +6,33 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { GuestbookValidation } from '@/validations/GuestbookValidation';
+import { CompanyValidation } from '@/validations/CompanyValidation';
 
-type IGuestbookFormProps =
+type ICompaniesFormProps =
   | {
       edit: true;
       id: number;
-      defaultValues: z.infer<typeof GuestbookValidation>;
+      defaultValues: z.infer<typeof CompanyValidation>;
       handleStopEditing: () => void;
     }
   | { edit?: false };
 
-const GuestbookForm = (props: IGuestbookFormProps) => {
+const CompaniesForm = (props: ICompaniesFormProps) => {
   const {
     handleSubmit,
     register,
     reset,
     formState: { errors },
-  } = useForm<z.infer<typeof GuestbookValidation>>({
-    resolver: zodResolver(GuestbookValidation),
+  } = useForm<z.infer<typeof CompanyValidation>>({
+    resolver: zodResolver(CompanyValidation),
     defaultValues: props.edit ? props.defaultValues : undefined,
   });
   const router = useRouter();
-  const t = useTranslations('GuestbookForm');
+  const t = useTranslations('CompanyForm');
 
   const handleCreate = handleSubmit(async (data) => {
     if (props.edit) {
-      await fetch(`/api/guestbook`, {
+      await fetch(`/api/companies`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const GuestbookForm = (props: IGuestbookFormProps) => {
 
       props.handleStopEditing();
     } else {
-      await fetch(`/api/guestbook`, {
+      await fetch(`/api/companies`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,37 +64,18 @@ const GuestbookForm = (props: IGuestbookFormProps) => {
       <div>
         <label
           className="text-sm font-bold text-gray-700"
-          htmlFor={`username${props.edit ? `-${props.id}` : ''}`}
+          htmlFor={`name${props.edit ? `-${props.id}` : ''}`}
         >
-          {t('username')}
+          {t('name')}
           <input
-            id={`username${props.edit ? `-${props.id}` : ''}`}
+            id={`name${props.edit ? `-${props.id}` : ''}`}
             className="mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-            {...register('username')}
+            {...register('name')}
           />
         </label>
-        {errors.username?.message && (
+        {errors.name?.message && (
           <div className="my-2 text-xs italic text-red-500">
-            {errors.username?.message}
-          </div>
-        )}
-      </div>
-
-      <div className="mt-3">
-        <label
-          className="text-sm font-bold text-gray-700"
-          htmlFor={`body${props.edit ? `-${props.id}` : ''}`}
-        >
-          {t('body')}
-          <input
-            id={`body${props.edit ? `-${props.id}` : ''}`}
-            className="mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-            {...register('body')}
-          />
-        </label>
-        {errors.body?.message && (
-          <div className="my-2 text-xs italic text-red-500">
-            {errors.body?.message}
+            {errors.name?.message}
           </div>
         )}
       </div>
@@ -111,4 +92,4 @@ const GuestbookForm = (props: IGuestbookFormProps) => {
   );
 };
 
-export { GuestbookForm };
+export { CompaniesForm };
