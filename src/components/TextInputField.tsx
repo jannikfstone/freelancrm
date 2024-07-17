@@ -1,4 +1,3 @@
-import { Box } from '@mui/system';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 type TextInputFieldProps = {

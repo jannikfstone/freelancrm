@@ -32,11 +32,13 @@
     "save": "Save"
   },
   "ContactForm": {
-    "name": "Name",
+    "name": "Last Name",
+    "firstName": "First Name",
     "email": "Email",
-    "company": "Company",
+    "phone": "Phone",
+    "companyName": "Company",
     "role": "Role",
-    "save": "Save"
+    "save": "Save Contact"
   },
   "About": {
     "meta_title": "About",

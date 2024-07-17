@@ -21,8 +21,8 @@ export const contactsSchema = sqliteTable('contacts', {
   firstName: text('first_name').notNull(),
   email: text('email'),
   phone: text('phone'),
-  position: text('position'),
-  companyName: text('name'),
+  role: text('position'),
+  companyName: text('company_name'),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(
     sql`(strftime('%s', 'now'))`,
   ),

@@ -1,40 +1,19 @@
 {
-  "version": "5",
+  "version": "1",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1693571350622,
-      "tag": "0000_blushing_warhawk",
+      "when": 1721232531268,
+      "tag": "0000_magical_green_goblin",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1713782832195,
-      "tag": "0001_perpetual_pixie",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1714056826306,
-      "tag": "0002_orange_wrecking_crew",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1721131328456,
-      "tag": "0003_yellow_daredevil",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1721228741787,
-      "tag": "0004_black_dazzler",
+      "when": 1721232711334,
+      "tag": "0001_clammy_gwen_stacy",
       "breakpoints": true
     }
   ]

@@ -5,7 +5,7 @@ export const ContactValidation = z.object({
   firstName: z.string().min(1),
   email: z.string().email().optional().or(z.literal('')),
   phone: z.string().optional().or(z.literal('')),
-  position: z.string().optional().or(z.literal('')),
+  role: z.string().optional().or(z.literal('')),
   companyName: z.string().optional(),
 });
 

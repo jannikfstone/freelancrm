@@ -1,6 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Grid, TextField } from '@mui/material';
+import { Box } from '@mui/system';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -61,52 +63,61 @@ const ContactForm = (props: IContactFormProps) => {
 
   return (
     <form onSubmit={handleCreate}>
-      <div>
-        <label
-          className="text-sm font-bold text-gray-700"
-          htmlFor={`name${props.edit ? `-${props.id}` : ''}`}
-        >
-          {t('name')}
-          <input
-            id={`name${props.edit ? `-${props.id}` : ''}`}
-            className="mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-            {...register('name')}
-          />
-        </label>
-        {errors.name?.message && (
-          <div className="my-2 text-xs italic text-red-500">
-            {errors.name?.message}
-          </div>
-        )}
-      </div>
-      <div>
-        <label
-          className="text-sm font-bold text-gray-700"
-          htmlFor={`name${props.edit ? `-${props.id}` : ''}`}
-        >
-          {t('company')}
-          <input
-            id={`name${props.edit ? `-${props.id}` : ''}`}
-            className="mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-            required={false}
-            {...register('company')}
-          />
-        </label>
-        {errors.name?.message && (
-          <div className="my-2 text-xs italic text-red-500">
-            {errors.name?.message}
-          </div>
-        )}
-      </div>
-
-      <div className="mt-5">
-        <button
-          className="rounded bg-blue-500 px-5 py-1 font-bold text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300/50"
-          type="submit"
-        >
-          {t('save')}
-        </button>
-      </div>
+      <Box>
+        <Grid container spacing={2}>
+          <Grid xs="auto">
+            <TextField
+              id="name-input"
+              label={t('name')}
+              helperText={errors.name?.message}
+              {...register('name')}
+            />
+          </Grid>
+          <Grid xs="auto">
+            <TextField
+              id="first-name-input"
+              label={t('firstName')}
+              helperText={errors.firstName?.message}
+              {...register('firstName')}
+            />
+          </Grid>
+          <Grid xs="auto">
+            <TextField
+              id="email-input"
+              label={t('email')}
+              helperText={errors.email?.message}
+              {...register('email')}
+            />
+          </Grid>
+          <Grid xs="auto">
+            <TextField
+              id="phone-input"
+              label={t('phone')}
+              helperText={errors.phone?.message}
+              {...register('phone')}
+            />
+          </Grid>
+          <Grid xs="auto">
+            <TextField
+              id="role-input"
+              label={t('role')}
+              helperText={errors.role?.message}
+              {...register('role')}
+            />
+          </Grid>
+          <Grid xs="auto">
+            <TextField
+              id="company-name-input"
+              label={t('companyName')}
+              helperText={errors.companyName?.message}
+              {...register('companyName')}
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ alignSelf: 'right' }}>
+          <Button type="submit">{t('save')}</Button>
+        </Box>
+      </Box>
     </form>
   );
 };
