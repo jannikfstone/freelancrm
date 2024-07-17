@@ -3,34 +3,37 @@ import { NextResponse } from 'next/server';
 
 import { db } from '@/libs/DB';
 import { logger } from '@/libs/Logger';
-import { guestbookSchema } from '@/models/Schema';
+import { contactsSchema } from '@/models/Schema';
 import {
-  DeleteGuestbookValidation,
-  EditGuestbookValidation,
-  GuestbookValidation,
-} from '@/validations/GuestbookValidation';
+  ContactValidation,
+  DeleteContactValidation,
+  EditContactValidation,
+} from '@/validations/ContactValidation';
 
 export const POST = async (request: Request) => {
   const json = await request.json();
-  const parse = GuestbookValidation.safeParse(json);
+  const parse = ContactValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });
   }
 
   try {
-    const guestbook = await db
-      .insert(guestbookSchema)
+    const contacts = await db
+      .insert(contactsSchema)
       .values(parse.data)
       .returning();
 
-    logger.info('A new guestbook has been created');
+    logger.info(
+      'A new contact has been created with the following data: %j',
+      parse.data,
+    );
 
     return NextResponse.json({
-      id: guestbook[0]?.id,
+      id: contacts[0]?.id,
     });
   } catch (error) {
-    logger.error(error, 'An error occurred while creating a guestbook');
+    logger.error(error, 'An error occurred while creating a contact');
 
     return NextResponse.json({}, { status: 500 });
   }
@@ -38,7 +41,7 @@ export const POST = async (request: Request) => {
 
 export const PUT = async (request: Request) => {
   const json = await request.json();
-  const parse = EditGuestbookValidation.safeParse(json);
+  const parse = EditContactValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });
@@ -46,19 +49,19 @@ export const PUT = async (request: Request) => {
 
   try {
     await db
-      .update(guestbookSchema)
+      .update(contactsSchema)
       .set({
         ...parse.data,
         updatedAt: sql`(strftime('%s', 'now'))`,
       })
-      .where(eq(guestbookSchema.id, parse.data.id))
+      .where(eq(contactsSchema.id, parse.data.id))
       .run();
 
-    logger.info('A guestbook entry has been updated');
+    logger.info('A contact entry has been updated');
 
     return NextResponse.json({});
   } catch (error) {
-    logger.error(error, 'An error occurred while updating a guestbook');
+    logger.error(error, 'An error occurred while updating a contact');
 
     return NextResponse.json({}, { status: 500 });
   }
@@ -66,7 +69,7 @@ export const PUT = async (request: Request) => {
 
 export const DELETE = async (request: Request) => {
   const json = await request.json();
-  const parse = DeleteGuestbookValidation.safeParse(json);
+  const parse = DeleteContactValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });
@@ -74,15 +77,15 @@ export const DELETE = async (request: Request) => {
 
   try {
     await db
-      .delete(guestbookSchema)
-      .where(eq(guestbookSchema.id, parse.data.id))
+      .delete(contactsSchema)
+      .where(eq(contactsSchema.id, parse.data.id))
       .run();
 
-    logger.info('A guestbook entry has been deleted');
+    logger.info('A contact entry has been deleted');
 
     return NextResponse.json({});
   } catch (error) {
-    logger.error(error, 'An error occurred while deleting a guestbook');
+    logger.error(error, 'An error occurred while deleting a contact');
 
     return NextResponse.json({}, { status: 500 });
   }

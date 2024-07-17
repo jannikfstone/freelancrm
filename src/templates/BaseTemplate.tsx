@@ -17,7 +17,6 @@ const BaseTemplate = (props: {
             <h1 className="text-3xl font-bold text-gray-900">
               {AppConfig.name}
             </h1>
-            <h2 className="text-xl">{t('description')}</h2>
           </div>
 
           <div className="flex justify-between">

@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import { CompaniesForm } from './CompaniesForm';
+import { ContactForm } from './ContactForm';
 
-const EditableCompaniesEntry = (props: { id: number; name: string }) => {
+const EditableContactsEntry = (props: { id: number; name: string, company?: string }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -38,17 +38,20 @@ const EditableCompaniesEntry = (props: { id: number; name: string }) => {
 
       <div className="ml-1 grow">
         {isEditing ? (
-          <CompaniesForm
+          <ContactForm
             edit
             id={props.id}
             defaultValues={{
               name: props.name,
+              company: props.company,
             }}
             handleStopEditing={handleStopEditing}
           />
         ) : (
           <>
-            <span className="text-gray-500">{props.name}:</span>{' '}
+            <span className="text-gray-500">{props.name}:   </span>
+            <span className="text-gray-500">{props.company ?? ""}</span>
+            {' '}
           </>
         )}
       </div>
@@ -56,4 +59,4 @@ const EditableCompaniesEntry = (props: { id: number; name: string }) => {
   );
 };
 
-export { EditableCompaniesEntry };
+export { EditableContactsEntry };

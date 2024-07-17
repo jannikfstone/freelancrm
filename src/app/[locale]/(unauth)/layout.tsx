@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
 export default function Layout(props: { children: React.ReactNode }) {
@@ -19,14 +18,7 @@ export default function Layout(props: { children: React.ReactNode }) {
               {t('home_link')}
             </Link>
           </li>
-          <li>
-            <Link
-              href="/about/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('about_link')}
-            </Link>
-          </li>
+         
           <li>
             <Link
               href="/company-overview/"
@@ -37,19 +29,11 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/portfolio/"
+              href="/contacts/"
               className="border-none text-gray-700 hover:text-gray-900"
             >
-              {t('portfolio_link')}
+              {t('contacts_link')}
             </Link>
-          </li>
-          <li>
-            <a
-              className="border-none text-gray-700 hover:text-gray-900"
-              href="https://github.com/ixartz/Next-js-Boilerplate"
-            >
-              GitHub
-            </a>
           </li>
         </>
       }
@@ -71,10 +55,6 @@ export default function Layout(props: { children: React.ReactNode }) {
             >
               {t('sign_up_link')}
             </Link>
-          </li>
-
-          <li>
-            <LocaleSwitcher />
           </li>
         </>
       }

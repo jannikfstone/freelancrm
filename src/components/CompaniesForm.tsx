@@ -1,12 +1,19 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { InputLabel, MenuItem, Select } from '@mui/material';
+import { Box } from '@mui/system';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { CompanyValidation } from '@/validations/CompanyValidation';
+import TextInputField from '@/components/TextInputField';
+import {
+  companyStatusEnum,
+  CompanyValidation,
+} from '@/validations/CompanyValidation';
 
 type ICompaniesFormProps =
   | {
@@ -62,24 +69,63 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
   return (
     <form onSubmit={handleCreate}>
       <div>
-        <label
-          className="text-sm font-bold text-gray-700"
-          htmlFor={`name${props.edit ? `-${props.id}` : ''}`}
+        <Box
+          sx={{
+            display: 'inline-flex',
+          }}
         >
-          {t('name')}
-          <input
-            id={`name${props.edit ? `-${props.id}` : ''}`}
-            className="mt-2 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-            {...register('name')}
-          />
-        </label>
-        {errors.name?.message && (
-          <div className="my-2 text-xs italic text-red-500">
-            {errors.name?.message}
-          </div>
-        )}
+          {TextInputField({
+            label: t('name'),
+            errors,
+            name: 'name',
+            register,
+          })}
+        </Box>
+        <Box
+          sx={{
+            display: 'inline-flex',
+            paddingLeft: 2,
+          }}
+        >
+          {TextInputField({
+            label: t('website'),
+            errors,
+            name: 'website',
+            register,
+          })}
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            paddingY: 2,
+            minWidth: '100%',
+          }}
+        >
+          {TextInputField({
+            label: t('description'),
+            errors,
+            name: 'description',
+            register,
+          })}
+        </Box>
+        <div>
+          <InputLabel id="company-status-label">{t('status')}</InputLabel>
+          <Select
+            labelId="company-status-label"
+            sx={{
+              minWidth: '130px',
+            }}
+            defaultValue={companyStatusEnum.options[0]}
+            {...register('status')}
+          >
+            {companyStatusEnum.options.map((status) => (
+              <MenuItem key={status} value={status}>
+                {status}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
       </div>
-
       <div className="mt-5">
         <button
           className="rounded bg-blue-500 px-5 py-1 font-bold text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300/50"

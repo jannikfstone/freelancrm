@@ -2,13 +2,13 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-import { CompaniesList } from '@/components/CompaniesList';
-import { CompaniesForm } from '@/components/CompaniesForm';
+import { ContactForm } from '@/components/ContactForm';
+import { ContactsList } from '@/components/ContactsList';
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
-    namespace: 'CompanyOverview',
+    namespace: 'ContactOverview',
   });
 
   return {
@@ -17,16 +17,19 @@ export async function generateMetadata(props: { params: { locale: string } }) {
   };
 }
 
-export default function Company() {
-  const t = useTranslations('CompanyOverview');
+const Contact = () => {
+  const t = useTranslations('ContactOverview');
 
   return (
     <>
-      <CompaniesForm />
+      <ContactForm />
 
-      <Suspense fallback={<p>{t('loading_companies')}</p>}>
-        <CompaniesList />
+      <Suspense fallback={<p>{t('loading_contacts')}</p>}>
+        <ContactsList />
       </Suspense>
+
     </>
   );
-}
+};
+
+export default Contact;

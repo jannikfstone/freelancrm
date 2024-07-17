@@ -15,6 +15,27 @@
       "when": 1713782832195,
       "tag": "0001_perpetual_pixie",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714056826306,
+      "tag": "0002_orange_wrecking_crew",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1721131328456,
+      "tag": "0003_yellow_daredevil",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1721228741787,
+      "tag": "0004_black_dazzler",
+      "breakpoints": true
     }
   ]
 }

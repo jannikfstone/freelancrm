@@ -1,9 +1,8 @@
 {
   "RootLayout": {
     "home_link": "Home",
-    "about_link": "About",
     "company_overview_link": "Company Overview",
-    "portfolio_link": "Portfolio",
+    "contacts_link": "Contacts",
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
   },
@@ -17,12 +16,26 @@
   },
   "CompanyOverview": {
     "meta_title": "Company Overview",
-    "meta_description": "An example of CRUD operation",
-    "database_powered_by": "Database powered by",
+    "meta_description": "Company overview page",
     "loading_companies": "Loading companies..."
+  },
+  "ContactOverview": {
+    "meta_title": "Contact Overview",
+    "meta_description": "Contacts overview page",
+    "loading_contacts": "Loading contacts..."
   },
   "CompanyForm": {
     "name": "Company Name",
+    "description": "Description",
+    "website": "Website",
+    "status": "Status",
+    "save": "Save"
+  },
+  "ContactForm": {
+    "name": "Name",
+    "email": "Email",
+    "company": "Company",
+    "role": "Role",
     "save": "Save"
   },
   "About": {
