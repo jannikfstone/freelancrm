@@ -1,9 +1,5 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { Suspense } from 'react';
-
-import { ContactForm } from '@/components/ContactForm';
-import { ContactsList } from '@/components/ContactsList';
+import ContactsPage from '@/components/Contacts/ContactsPage';
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
@@ -18,18 +14,7 @@ export async function generateMetadata(props: { params: { locale: string } }) {
 }
 
 const Contact = () => {
-  const t = useTranslations('ContactOverview');
-
-  return (
-    <>
-      <ContactForm />
-
-      <Suspense fallback={<p>{t('loading_contacts')}</p>}>
-        <ContactsList />
-      </Suspense>
-
-    </>
-  );
+  return <ContactsPage />;
 };
 
 export default Contact;

@@ -5,14 +5,24 @@ import { db } from '@/libs/DB';
 import { logger } from '@/libs/Logger';
 import { contactsSchema } from '@/models/Schema';
 import {
-  ContactValidation,
+  ContactListValidation,
+  ContactPostValidation,
   DeleteContactValidation,
-  EditContactValidation,
+  ContactGetValidation,
 } from '@/validations/ContactValidation';
+
+export const GET = async () => {
+  const dbContacts = await db.select().from(contactsSchema).all();
+  const apiContacts = ContactListValidation.parse(dbContacts);
+
+  logger.info('Get all contacts entries');
+
+  return NextResponse.json(apiContacts);
+};
 
 export const POST = async (request: Request) => {
   const json = await request.json();
-  const parse = ContactValidation.safeParse(json);
+  const parse = ContactPostValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });
@@ -41,7 +51,7 @@ export const POST = async (request: Request) => {
 
 export const PUT = async (request: Request) => {
   const json = await request.json();
-  const parse = EditContactValidation.safeParse(json);
+  const parse = ContactGetValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });

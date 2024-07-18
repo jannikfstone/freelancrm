@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ContactValidation = z.object({
+export const ContactPostValidation = z.object({
   name: z.string().min(1),
   firstName: z.string().min(1),
   email: z.string().email().optional().or(z.literal('')),
@@ -13,9 +13,10 @@ const ContactId = z.object({
   id: z.coerce.number(),
 });
 
-export const EditContactValidation = z.intersection(
-  ContactValidation,
+export const ContactGetValidation = z.intersection(
+  ContactPostValidation,
   ContactId,
 );
 
+export const ContactListValidation = z.array(ContactGetValidation);
 export const DeleteContactValidation = ContactId;

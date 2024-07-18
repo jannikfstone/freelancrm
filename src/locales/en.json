@@ -22,7 +22,8 @@
   "ContactOverview": {
     "meta_title": "Contact Overview",
     "meta_description": "Contacts overview page",
-    "loading_contacts": "Loading contacts..."
+    "loading_contacts": "Loading contacts...",
+    "add_contact": "Add Contact"
   },
   "CompanyForm": {
     "name": "Company Name",
@@ -39,6 +40,10 @@
     "companyName": "Company",
     "role": "Role",
     "save": "Save Contact"
+  },
+  "ContactsEntry": {
+    "at": "at",
+    "working_at": "Working at"
   },
   "About": {
     "meta_title": "About",
