@@ -12,14 +12,14 @@ import type { z } from 'zod';
 import TextInputField from '@/components/TextInputField';
 import {
   companyStatusEnum,
-  CompanyValidation,
+  CompanyPostValidation,
 } from '@/validations/CompanyValidation';
 
 type ICompaniesFormProps =
   | {
       edit: true;
       id: number;
-      defaultValues: z.infer<typeof CompanyValidation>;
+      defaultValues: z.infer<typeof CompanyPostValidation>;
       handleStopEditing: () => void;
     }
   | { edit?: false };
@@ -30,8 +30,8 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
     register,
     reset,
     formState: { errors },
-  } = useForm<z.infer<typeof CompanyValidation>>({
-    resolver: zodResolver(CompanyValidation),
+  } = useForm<z.infer<typeof CompanyPostValidation>>({
+    resolver: zodResolver(CompanyPostValidation),
     defaultValues: props.edit ? props.defaultValues : undefined,
   });
   const router = useRouter();

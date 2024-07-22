@@ -3,16 +3,25 @@ import { NextResponse } from 'next/server';
 
 import { db } from '@/libs/DB';
 import { logger } from '@/libs/Logger';
-import { companiesSchema } from '@/models/Schema';
+import { companiesSchema } from "@/models/Schema";
 import {
-  CompanyValidation,
+  CompanyPostValidation,
   DeleteCompanyValidation,
-  EditCompanyValidation,
-} from '@/validations/CompanyValidation';
+  CompanyValidation, CompaniesListValidation
+} from "@/validations/CompanyValidation";
+
+export const GET = async () => {
+  const dbCompanies = await db.select().from(companiesSchema).all();
+  const apiCompanies = CompaniesListValidation.parse(dbCompanies);
+
+  logger.info('Get all companies entries');
+
+  return NextResponse.json(apiCompanies);
+};
 
 export const POST = async (request: Request) => {
   const json = await request.json();
-  const parse = CompanyValidation.safeParse(json);
+  const parse = CompanyPostValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });
@@ -38,7 +47,7 @@ export const POST = async (request: Request) => {
 
 export const PUT = async (request: Request) => {
   const json = await request.json();
-  const parse = EditCompanyValidation.safeParse(json);
+  const parse = CompanyValidation.safeParse(json);
 
   if (!parse.success) {
     return NextResponse.json(parse.error.format(), { status: 422 });

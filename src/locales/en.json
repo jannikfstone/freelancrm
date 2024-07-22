@@ -14,6 +14,11 @@
     "meta_title": "Next.js Boilerplate Presentation",
     "meta_description": "Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
   },
+  "InteractionsPage": {
+    "company": "Company",
+    "save": "Save Interaction",
+    "notes": "Notes"
+  },
   "CompanyOverview": {
     "meta_title": "Company Overview",
     "meta_description": "Company overview page",
