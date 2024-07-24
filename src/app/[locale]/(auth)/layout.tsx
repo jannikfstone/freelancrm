@@ -1,34 +1,37 @@
-import { enUS, frFR } from '@clerk/localizations';
-import { ClerkProvider } from '@clerk/nextjs';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
-export default function AuthLayout(props: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  let clerkLocale = enUS;
-  let signInUrl = '/sign-in';
-  let signUpUrl = '/sign-up';
-  let dashboardUrl = '/dashboard';
+import { BaseTemplate } from '@/templates/BaseTemplate';
 
-  if (props.params.locale === 'fr') {
-    clerkLocale = frFR;
-  }
-
-  if (props.params.locale !== 'en') {
-    signInUrl = `/${props.params.locale}${signInUrl}`;
-    signUpUrl = `/${props.params.locale}${signUpUrl}`;
-    dashboardUrl = `/${props.params.locale}${dashboardUrl}`;
-  }
+export default function Layout(props: { children: React.ReactNode }) {
+  const t = useTranslations('RootLayout');
 
   return (
-    <ClerkProvider
-      localization={clerkLocale}
-      signInUrl={signInUrl}
-      signUpUrl={signUpUrl}
-      afterSignInUrl={dashboardUrl}
-      afterSignUpUrl={dashboardUrl}
+    <BaseTemplate
+      leftNav={<></>}
+      rightNav={
+        <>
+          <li>
+            <Link
+              href="/sign-in/"
+              className="border-none text-gray-700 hover:text-gray-900"
+            >
+              {t('sign_in_link')}
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/sign-up/"
+              className="border-none text-gray-700 hover:text-gray-900"
+            >
+              {t('sign_up_link')}
+            </Link>
+          </li>
+        </>
+      }
     >
-      {props.children}
-    </ClerkProvider>
+      <div className="py-5 text-xl [&_p]:my-6">{props.children}</div>
+    </BaseTemplate>
   );
 }

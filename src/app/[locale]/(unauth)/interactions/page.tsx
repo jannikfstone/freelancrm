@@ -71,7 +71,6 @@ export default function InteractionsPage() {
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box>
           <Grid container spacing={2}>
             <Grid item>
               <Autocomplete
@@ -100,7 +99,6 @@ export default function InteractionsPage() {
             </Grid>
             <DatePicker value={selectedDate} onChange={(value) => setSelectedDate(value)}/>
           </Grid>
-        </Box>
         <Button variant="outlined" type="submit">
           {t("save")}
         </Button>

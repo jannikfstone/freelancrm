@@ -1,4 +1,3 @@
-import { authMiddleware, redirectToSignIn } from '@clerk/nextjs';
 import type { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
@@ -10,6 +9,11 @@ const intlMiddleware = createMiddleware({
   defaultLocale: AppConfig.defaultLocale,
 });
 
+export function middleware(req: NextRequest) {
+  return intlMiddleware(req);
+}
+
+/*
 export default authMiddleware({
   publicRoutes: (req: NextRequest) =>
     !req.nextUrl.pathname.includes('/dashboard'),
@@ -27,6 +31,7 @@ export default authMiddleware({
     }
   },
 });
+*/
 
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],

@@ -22,6 +22,13 @@
       "when": 1721649686865,
       "tag": "0002_handy_speed",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1721833258329,
+      "tag": "0003_curly_imperial_guard",
+      "breakpoints": true
     }
   ]
 }
