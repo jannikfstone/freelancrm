@@ -9,7 +9,7 @@ export const UserPostValidation = z.object({
 });
 
 export const UserValidation = z.object({
-  id: z.number(),
+  id: z.string().uuid(),
   email: z.string().email(),
   role: z.enum(userRoles),
 });

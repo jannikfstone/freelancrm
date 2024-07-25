@@ -1,4 +1,4 @@
-import { db } from '@/libs/DB';
+import { dbPlain } from '@/libs/Db';
 import { logger } from '@/libs/Logger';
 import { companiesSchema } from '@/models/Schema';
 
@@ -6,7 +6,7 @@ import { DeleteCompaniesEntry } from './DeleteCompany';
 import { EditableCompaniesEntry } from './EditableCompany';
 
 const CompaniesList = async () => {
-  const companies = await db.select().from(companiesSchema).all();
+  const companies = await dbPlain.select().from(companiesSchema).all();
 
   logger.info('Get all companies entries');
 

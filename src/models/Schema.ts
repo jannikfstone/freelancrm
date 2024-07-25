@@ -45,9 +45,8 @@ export const interactionsSchema = sqliteTable("interactions", {
 });
 
 export const userSchema = sqliteTable("users", {
-  id: integer("id").primaryKey(),
-  email: text("email").notNull(),
-  password: text("password").notNull(),
+  id: text("id").primaryKey(),
+  email: text("email").notNull().unique(),
   role: text("role").default("USER"),
   createdAt: integer("created_at", { mode: "timestamp" }).default(
     sql`(strftime('%s', 'now'))`

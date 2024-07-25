@@ -4,15 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { InputLabel, MenuItem, Select } from '@mui/material';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
 import TextInputField from '@/components/TextInputField';
 import {
-  companyStatusEnum,
   CompanyPostValidation,
+  companyStatusEnum,
 } from '@/validations/CompanyValidation';
 
 type ICompaniesFormProps =
@@ -35,7 +34,6 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
     defaultValues: props.edit ? props.defaultValues : undefined,
   });
   const router = useRouter();
-  const t = useTranslations('CompanyForm');
 
   const handleCreate = handleSubmit(async (data) => {
     if (props.edit) {
@@ -75,7 +73,7 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
           }}
         >
           {TextInputField({
-            label: t('name'),
+            label: 'name',
             errors,
             name: 'name',
             register,
@@ -88,7 +86,7 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
           }}
         >
           {TextInputField({
-            label: t('website'),
+            label: 'website',
             errors,
             name: 'website',
             register,
@@ -102,14 +100,14 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
           }}
         >
           {TextInputField({
-            label: t('description'),
+            label: 'description',
             errors,
             name: 'description',
             register,
           })}
         </Box>
         <div>
-          <InputLabel id="company-status-label">{t('status')}</InputLabel>
+          <InputLabel id="company-status-label">status</InputLabel>
           <Select
             labelId="company-status-label"
             sx={{
@@ -131,7 +129,7 @@ const CompaniesForm = (props: ICompaniesFormProps) => {
           className="rounded bg-blue-500 px-5 py-1 font-bold text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300/50"
           type="submit"
         >
-          {t('save')}
+          save
         </button>
       </div>
     </form>

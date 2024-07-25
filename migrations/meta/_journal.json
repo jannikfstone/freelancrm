@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1721232531268,
-      "tag": "0000_magical_green_goblin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1721232711334,
-      "tag": "0001_clammy_gwen_stacy",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1721649686865,
-      "tag": "0002_handy_speed",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1721833258329,
-      "tag": "0003_curly_imperial_guard",
+      "when": 1721919277970,
+      "tag": "0000_polite_groot",
       "breakpoints": true
     }
   ]

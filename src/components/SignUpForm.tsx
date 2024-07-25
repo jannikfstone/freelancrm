@@ -5,23 +5,29 @@ import { z } from "zod";
 import { UserPostValidation } from "@/validations/UserValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, TextField } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function SignUpForm() {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm<z.infer<typeof UserPostValidation>>({
     resolver: zodResolver(UserPostValidation),
   });
+  const router = useRouter();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   async function handleSignup(data: z.infer<typeof UserPostValidation>) {
+    setButtonDisabled(true);
     const userData = UserPostValidation.safeParse(data);
     if (!userData.success) {
       console.error("Error in form data");
       return;
     }
-    console.log(userData.data)
+    console.log(userData.data);
     await fetch("/api/users", {
       method: "POST",
       headers: {
@@ -29,6 +35,8 @@ export default function SignUpForm() {
       },
       body: JSON.stringify(userData.data),
     });
+    reset();
+    router.push("/sign-up/success");
   }
 
   return (
@@ -50,7 +58,7 @@ export default function SignUpForm() {
           helperText={errors.password?.message}
           {...register("password")}
         />
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" disabled={buttonDisabled}>
           Sign Up
         </Button>
       </Box>

@@ -1,1 +1,0 @@
-ALTER TABLE `contacts` RENAME COLUMN `companyName` TO `company_name`;

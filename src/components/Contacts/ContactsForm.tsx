@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Grid, Modal, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
@@ -46,7 +45,6 @@ const ContactsForm = (props: IContactFormProps) => {
     defaultValues: props.edit ? props.defaultValues : undefined,
   });
   const router = useRouter();
-  const t = useTranslations('ContactForm');
 
   const handleCreate = handleSubmit(async (data) => {
     if (props.edit) {
@@ -87,7 +85,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="first-name-input"
-                label={t('firstName')}
+                label="firstName"
                 helperText={errors.firstName?.message}
                 {...register('firstName')}
               />
@@ -96,7 +94,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="name-input"
-                label={t('name')}
+                label="name"
                 helperText={errors.name?.message}
                 {...register('name')}
               />
@@ -105,7 +103,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="email-input"
-                label={t('email')}
+                label="email"
                 helperText={errors.email?.message}
                 {...register('email')}
               />
@@ -114,7 +112,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="phone-input"
-                label={t('phone')}
+                label="phone"
                 helperText={errors.phone?.message}
                 {...register('phone')}
               />
@@ -123,7 +121,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="role-input"
-                label={t('role')}
+                label="role"
                 helperText={errors.role?.message}
                 {...register('role')}
               />
@@ -132,7 +130,7 @@ const ContactsForm = (props: IContactFormProps) => {
               <TextField
                 sx={{ display: 'flex' }}
                 id="company-name-input"
-                label={t('companyName')}
+                label="companyName"
                 helperText={errors.companyName?.message}
                 {...register('companyName')}
               />
@@ -143,7 +141,7 @@ const ContactsForm = (props: IContactFormProps) => {
             sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2 }}
           >
             <Button variant="outlined" type="submit">
-              {t('save')}
+              save
             </Button>
           </Box>
         </Box>

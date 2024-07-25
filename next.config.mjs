@@ -4,7 +4,6 @@ import './src/libs/Env.mjs';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import withNextIntl from 'next-intl/plugin';
 
-const withNextIntlConfig = withNextIntl('./src/libs/i18n.ts');
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -12,8 +11,7 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 export default withSentryConfig(
-  bundleAnalyzer(
-    withNextIntlConfig({
+  bundleAnalyzer({
       eslint: {
         dirs: ['.'],
       },
@@ -35,7 +33,6 @@ export default withSentryConfig(
         return config;
       },
     }),
-  ),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options

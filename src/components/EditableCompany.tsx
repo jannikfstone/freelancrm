@@ -1,28 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 
-import { CompaniesForm } from './CompaniesForm';
+const EditableCompaniesEntry = (props: { name: string }) => {
 
-const EditableCompaniesEntry = (props: { id: number; name: string }) => {
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleEdit = () => {
-    setIsEditing((value) => !value);
-  };
-
-  const handleStopEditing = () => {
-    setIsEditing(false);
-  };
 
   return (
     <>
       <button
         type="button"
         aria-label="edit"
-        onClick={() => {
-          handleEdit();
-        }}
       >
         <svg
           className="size-6 stroke-current"
@@ -37,20 +23,10 @@ const EditableCompaniesEntry = (props: { id: number; name: string }) => {
       </button>
 
       <div className="ml-1 grow">
-        {isEditing ? (
-          <CompaniesForm
-            edit
-            id={props.id}
-            defaultValues={{
-              name: props.name,
-            }}
-            handleStopEditing={handleStopEditing}
-          />
-        ) : (
-          <>
+
+
             <span className="text-gray-500">{props.name}:</span>{' '}
-          </>
-        )}
+
       </div>
     </>
   );

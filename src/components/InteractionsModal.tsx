@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 import { InteractionPostValidation } from "@/validations/InteractionValidation";
-import { useTranslations } from "next-intl";
 import dayjs from "dayjs";
 import type { CompanyValidation } from "@/validations/CompanyValidation";
 
@@ -40,7 +39,6 @@ export default function InteractionsModal({
   } = useForm<z.infer<typeof InteractionPostValidation>>({
     // resolver: zodResolver(InteractionPostValidation),
   });
-  const t = useTranslations("InteractionsPage");
   type CompanyDisplay = { id: number; label: string };
   const [companies, setCompanies] = useState<CompanyDisplay[]>([]);
   const [companiesLoading, setCompaniesLoading] = useState(true);
@@ -101,7 +99,7 @@ export default function InteractionsModal({
                     setSelectedCompany(newValue);
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} label={t("company")} />
+                    <TextField {...params} label="company" />
                   )}
                   loading={companiesLoading}
                   id="select-company"
@@ -110,7 +108,7 @@ export default function InteractionsModal({
               <Grid item>
                 <TextField
                   id="notes-input"
-                  label={t("notes")}
+                  label="notes"
                   multiline
                   minRows={3}
                   sx={{ width: 300 }}
@@ -125,7 +123,7 @@ export default function InteractionsModal({
               </Grid>
               <Grid item>
                 <Button variant="outlined" type="submit">
-                  {t("save")}
+                  save
                 </Button>
               </Grid>
             </Grid>
