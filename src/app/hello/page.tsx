@@ -1,6 +1,6 @@
 import { Hello } from '@/components/Hello';
 
-export async function generateMetadata(props: { params: { locale: string } }) {
+export async function generateMetadata() {
 
   return {
     title: 'meta_title',

@@ -14,7 +14,7 @@ const CompaniesList = async () => {
         <div key={elt.id} className="mb-1 flex items-center gap-x-1">
           <DeleteCompaniesEntry id={elt.id} />
 
-          <EditableCompaniesEntry id={elt.id} name={elt.name} />
+          <EditableCompaniesEntry name={elt.name} />
         </div>
       ))}
     </div>

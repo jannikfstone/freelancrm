@@ -37,7 +37,6 @@ export const POST = async (request: Request) => {
       id: contacts[0]?.id,
     });
   } catch (error) {
-    logger.error(error, 'An error occurred while creating a contact');
 
     return NextResponse.json({}, { status: 500 });
   }

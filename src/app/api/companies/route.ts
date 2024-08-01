@@ -54,7 +54,7 @@ export const PUT = async (request: Request) => {
       .update(companiesSchema)
       .set({
         ...parse.data,
-        updatedAt: sql`(strftime('%s', 'now'))`,
+        updatedAt: sql`(strftime('%s', 'now'))`
       })
       .where(eq(companiesSchema.id, parse.data.id))
       .run();

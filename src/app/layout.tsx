@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BaseTemplate } from "@/templates/BaseTemplate";
+import { SignInOrOut } from "@/components/SignInOrOut";
 
 export const metadata: Metadata = {
   icons: [
@@ -73,12 +74,7 @@ export default function RootLayout(props: {
             rightNav={
               <>
                 <li>
-                  <Link
-                    href="/sign-in/"
-                    className="border-none text-gray-700 hover:text-gray-900"
-                  >
-                    Sign in
-                  </Link>
+                  <SignInOrOut/>
                 </li>
               </>
             }

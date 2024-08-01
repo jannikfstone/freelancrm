@@ -33,7 +33,7 @@ export const contactsSchema = sqliteTable("contacts", {
 
 export const interactionsSchema = sqliteTable("interactions", {
   id: integer("id").primaryKey(),
-  companyId: integer("company_id").notNull().references(companiesSchema.id),
+  companyId: integer("company_id").notNull().references(() => companiesSchema.id),
   date: text("date").notNull(),
   notes: text("notes"),
   createdAt: integer("created_at", { mode: "timestamp" }).default(
