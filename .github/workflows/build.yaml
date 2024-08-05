@@ -1,0 +1,15 @@
+name: build
+run-name: build of branch ${{ github.ref }}
+on: [push]
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-docker@v4
+      - run: docker build . -t ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
+      - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u USERNAME --password-stdin
+      - run: docker push ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
