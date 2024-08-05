@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { dbPlain } from "@/libs/Db";
+import { db } from "@/libs/Db";
 import { companiesSchema, interactionsSchema } from "@/models/Schema";
 import {
   InteractionListValidation,
@@ -9,7 +9,7 @@ import {
 import { eq } from "drizzle-orm";
 
 export async function GET() {
-  const dbInteractions = await dbPlain
+  const dbInteractions = await db
     .select({
       companyId: interactionsSchema.companyId,
       date: interactionsSchema.date,
@@ -21,7 +21,6 @@ export async function GET() {
       companiesSchema,
       eq(interactionsSchema.companyId, companiesSchema.id),
     )
-    .all();
   const apiInteractions = InteractionListValidation.parse(dbInteractions);
 
   return NextResponse.json(apiInteractions);
@@ -36,7 +35,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const interactions = await dbPlain
+    const interactions = await db
       .insert(interactionsSchema)
       .values(parse.data)
       .returning();

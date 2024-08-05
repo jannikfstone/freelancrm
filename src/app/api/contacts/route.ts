@@ -1,7 +1,7 @@
 import { eq, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
-import { dbPlain } from '@/libs/Db';
+import { db } from '@/libs/Db';
 import { contactsSchema } from '@/models/Schema';
 import {
   ContactListValidation,
@@ -11,7 +11,7 @@ import {
 } from '@/validations/ContactValidation';
 
 export const GET = async () => {
-  const dbContacts = await dbPlain.select().from(contactsSchema).all();
+  const dbContacts = await db.select().from(contactsSchema);
   const apiContacts = ContactListValidation.parse(dbContacts);
 
 
@@ -27,7 +27,7 @@ export const POST = async (request: Request) => {
   }
 
   try {
-    const contacts = await dbPlain
+    const contacts = await db
       .insert(contactsSchema)
       .values(parse.data)
       .returning();
@@ -51,14 +51,13 @@ export const PUT = async (request: Request) => {
   }
 
   try {
-    await dbPlain
+    await db
       .update(contactsSchema)
       .set({
         ...parse.data,
         updatedAt: sql`(strftime('%s', 'now'))`,
       })
-      .where(eq(contactsSchema.id, parse.data.id))
-      .run();
+      .where(eq(contactsSchema.id, parse.data.id));
 
 
     return NextResponse.json({});
@@ -77,10 +76,9 @@ export const DELETE = async (request: Request) => {
   }
 
   try {
-    await dbPlain
+    await db
       .delete(contactsSchema)
-      .where(eq(contactsSchema.id, parse.data.id))
-      .run();
+      .where(eq(contactsSchema.id, parse.data.id));
 
 
     return NextResponse.json({});

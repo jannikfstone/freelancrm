@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { UserPostValidation } from "@/validations/UserValidation";
-import { dbPlain } from "@/libs/Db";
+import { db } from "@/libs/Db";
 import { userSchema } from "@/models/Schema";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     );
   }
   try {
-    await dbPlain
+    await db
       .insert(userSchema)
       .values({
         email: parseResult.data.email,

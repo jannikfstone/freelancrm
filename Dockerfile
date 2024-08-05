@@ -14,6 +14,7 @@ RUN \
   fi
 
 
+
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
@@ -53,7 +54,6 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY .env.local .
 
 USER nextjs
 

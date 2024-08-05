@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "dotenv -c -- tsx ./scripts/dbMigrate.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",
-    "@libsql/client": "^0.7.0",
     "@mui/material": "^5.16.5",
     "@mui/material-nextjs": "^5.16.4",
     "@mui/x-date-pickers": "^7.11.1",
@@ -25,6 +25,7 @@
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
     "postcss": "^8.4.40",
+    "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
@@ -37,8 +38,10 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "tsx": "^4.16.5",
     "typescript": "^5"
   }
 }

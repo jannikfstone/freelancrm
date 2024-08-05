@@ -1,59 +1,42 @@
-import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
-export const companiesSchema = sqliteTable("companies", {
-  id: integer("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description"),
+export const companiesSchema = pgTable("companies", {
+  id: serial("id").primaryKey(),
+  name: text("name", ).notNull(),
+  description: text("description", ),
   website: text("website"),
   status: text("status").default("ACTIVE"),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  ),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  )
+  createdAt: timestamp("created_at", { withTimezone: false}).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: false}).defaultNow()
 });
 
-export const contactsSchema = sqliteTable("contacts", {
-  id: integer("id").primaryKey(),
+export const contactsSchema = pgTable("contacts", {
+  id: serial("id").primaryKey(),
   name: text("name").notNull(),
   firstName: text("first_name").notNull(),
   email: text("email"),
   phone: text("phone"),
   role: text("position"),
   companyName: text("company_name"),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  ),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  )
+  createdAt: timestamp("created_at", { withTimezone: false}).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: false}).defaultNow()
 });
 
-export const interactionsSchema = sqliteTable("interactions", {
-  id: integer("id").primaryKey(),
+export const interactionsSchema = pgTable("interactions", {
+  id: serial("id").primaryKey(),
   companyId: integer("company_id").notNull().references(() => companiesSchema.id),
   date: text("date").notNull(),
   notes: text("notes"),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  ),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  )
+  createdAt: timestamp("created_at", { withTimezone: false}).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: false}).defaultNow()
 });
 
-export const userSchema = sqliteTable("users", {
+export const userSchema = pgTable("users", {
   id: text("id").primaryKey(),
   email: text("email").notNull().unique(),
   role: text("role").default("USER"),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  ),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
-    sql`(strftime('%s', 'now'))`
-  )
+  createdAt: timestamp("created_at", { withTimezone: false}).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: false}).defaultNow()
 });
 
 

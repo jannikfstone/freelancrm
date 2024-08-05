@@ -1,7 +1,7 @@
 import { eq, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
-import { dbPlain } from '@/libs/Db';
+import { db } from '@/libs/Db';
 import { companiesSchema } from "@/models/Schema";
 import {
   CompanyPostValidation,
@@ -10,7 +10,7 @@ import {
 } from "@/validations/CompanyValidation";
 
 export const GET = async () => {
-  const dbCompanies = await dbPlain.select().from(companiesSchema).all();
+  const dbCompanies = await db.select().from(companiesSchema);
   const apiCompanies = CompaniesListValidation.parse(dbCompanies);
 
 
@@ -26,7 +26,7 @@ export const POST = async (request: Request) => {
   }
 
   try {
-    const companies = await dbPlain
+    const companies = await db
       .insert(companiesSchema)
       .values(parse.data)
       .returning();
@@ -50,14 +50,13 @@ export const PUT = async (request: Request) => {
   }
 
   try {
-    await dbPlain
+    await db
       .update(companiesSchema)
       .set({
         ...parse.data,
         updatedAt: sql`(strftime('%s', 'now'))`
       })
-      .where(eq(companiesSchema.id, parse.data.id))
-      .run();
+      .where(eq(companiesSchema.id, parse.data.id));
 
 
     return NextResponse.json({});
@@ -76,11 +75,9 @@ export const DELETE = async (request: Request) => {
   }
 
   try {
-    await dbPlain
+    await db
       .delete(companiesSchema)
-      .where(eq(companiesSchema.id, parse.data.id))
-      .run();
-
+      .where(eq(companiesSchema.id, parse.data.id));
 
     return NextResponse.json({});
   } catch (error) {

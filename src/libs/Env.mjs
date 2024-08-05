@@ -6,13 +6,13 @@ import { z } from 'zod';
 export const Env = createEnv({
   server: {
     DATABASE_URL: z.string().min(1),
-    DATABASE_AUTH_TOKEN: z.string().optional(),
+    DATABASE_URL_EXTERNAL: z.string().min(1),
     LOGTAIL_SOURCE_TOKEN: z.string().optional(),
   },
   // You need to destructure all the keys manually
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
-    DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
+    DATABASE_URL_EXTERNAL: process.env.DATABASE_URL_EXTERNAL,
     LOGTAIL_SOURCE_TOKEN: process.env.LOGTAIL_SOURCE_TOKEN,
   },
 });
