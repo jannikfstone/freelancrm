@@ -9,8 +9,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - uses: actions/setup-docker@v4
-      - run: docker build . -t ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
-      - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u USERNAME --password-stdin
-      - run: docker push ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
-      - run: echo dummy
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
