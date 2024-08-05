@@ -13,3 +13,4 @@ jobs:
       - run: docker build . -t ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
       - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u USERNAME --password-stdin
       - run: docker push ghcr.io/jannikfstone/freelancrm:${{ github.ref }}
+      - run: echo dummy
